@@ -7,7 +7,7 @@ carregador = Carregador()
 modelo = Model()
 avaliador = Avaliador()
 
-# Parâmetros    
+# Parâmetros
 url_dados = "./MachineLearning/data/test_dataset_cancers.csv"
 colunas = ['mean area', 'mean perimeter', 'mean texture', 'mean radius', 'Diagnostic']
 
@@ -25,8 +25,8 @@ def test_modelo_lr():
 
     # Obtendo as métricas da Regressão Logística
     acuracia_lr, recall_lr, precisao_lr, f1_lr = avaliador.avaliar(modelo_lr, X, y)
-    
-    # Testando as métricas da Regressão Logística 
+
+    # Testando as métricas da Regressão Logística
     assert acuracia_lr >= 0.78
     assert recall_lr >= 0.5
     assert precisao_lr >= 0.5
@@ -40,7 +40,7 @@ def test_modelo_knn():
 
     # Obtendo as métricas do KNN
     acuracia_knn, recall_knn, precisao_knn, f1_knn = avaliador.avaliar(modelo_knn, X, y)
-    
+
     # Testando as métricas do KNN
     assert acuracia_knn >= 0.78
     assert recall_knn >= 0.5
@@ -55,7 +55,7 @@ def test_modelo_rf():
 
     # Obtendo as métricas do Random Forest
     acuracia_rf, recall_rf, precisao_rf, f1_rf = avaliador.avaliar(modelo_rf, X, y)
-    
+
     # Testando as métricas do Random Forest
     assert acuracia_rf >= 0.78
     assert recall_rf >= 0.5

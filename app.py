@@ -52,7 +52,7 @@ def add_paciente(form: PacienteSchema):
         modelo = Pipeline.carrega_pipeline(model_path)
         # Realizando a predição
         outcome = int(Model.preditor(modelo, X_input)[0])
-        
+
         paciente = Paciente(
             name=form.name,
             radius_mean=form.radius_mean,
@@ -61,18 +61,18 @@ def add_paciente(form: PacienteSchema):
             area_mean=form.area_mean,
             outcome=outcome
         )
-        
+
         logger.debug(f"Dados recebidos do formulário: {form}")
         logger.debug(f"Checando se paciente já existe com nome: '{form.name}'")
-                
+
         session = Session()
-        
+
         # Checando se paciente já existe na base
         if session.query(Paciente).filter(Paciente.name == form.name).first():
             error_msg = "Paciente já existente na base :/"
             logger.warning(f"Erro ao adicionar paciente '{paciente.name}': {error_msg}")
             return {"message": error_msg}, 409
-        
+
         # Adicionando paciente
         session.add(paciente)
         session.commit()
@@ -94,7 +94,7 @@ def get_paciente(query: PacienteBuscaSchema):
     logger.debug(f"Coletando dados sobre paciente '{paciente_nome}'")
     session = Session()
     paciente = session.query(Paciente).filter(Paciente.name == paciente_nome).first()
-    
+
     if not paciente:
         error_msg = f"Paciente {paciente_nome} não encontrado na base :/"
         logger.warning(f"Erro ao buscar paciente '{paciente_nome}': {error_msg}")
@@ -110,10 +110,10 @@ def delete_paciente(query: PacienteBuscaSchema):
     """Remove um paciente cadastrado na base a partir do nome."""
     paciente_nome = unquote(query.name)
     logger.debug(f"Deletando paciente '{paciente_nome}'")
-    
+
     session = Session()
     paciente = session.query(Paciente).filter(Paciente.name == paciente_nome).first()
-    
+
     if not paciente:
         error_msg = "Paciente não encontrado na base :/"
         logger.warning(f"Erro ao deletar paciente '{paciente_nome}': {error_msg}")
