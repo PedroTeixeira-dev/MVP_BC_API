@@ -7,28 +7,28 @@ import numpy as np
 class PacienteSchema(BaseModel):
     """Define como um novo paciente a ser inserido deve ser representado
     """
-    name: str = "Maria"
-    radius_mean: float = 12.34
-    texture_mean: float = 18.56
-    perimeter_mean: float = 78.90
-    area_mean: float = 450.0
+    name: str = "Joana"
+    radius_mean: float = 10.01
+    texture_mean: float = 20.54
+    perimeter_mean: float = 101.36
+    area_mean: float = 1002.57
 
 class PacienteViewSchema(BaseModel):
     """Define como um paciente será retornado
     """
     id: int = 1
-    name: str = "Maria"
-    radius_mean: float = 12.34
-    texture_mean: float = 18.56
-    perimeter_mean: float = 78.90
-    area_mean: float = 450.0
-    outcome: str = "Benigno"  # Resultado da previsão
+    name: str = "Joana"
+    radius_mean: float = 10.01
+    texture_mean: float = 20.54
+    perimeter_mean: float = 101.36
+    area_mean: float = 1002.57
+    outcome: str = "Maligno"  # Resultado da previsão
     
 class PacienteBuscaSchema(BaseModel):
     """Define como deve ser a estrutura que representa a busca.
     Ela será feita com base no nome do paciente.
     """
-    name: str = "Maria"
+    name: str = "Joana"
 
 class ListaPacientesSchema(BaseModel):
     """Define como uma lista de pacientes será representada
@@ -39,7 +39,7 @@ class ListaPacientesSchema(BaseModel):
 class PacienteDelSchema(BaseModel):
     """Define como um paciente para deleção será representado
     """
-    name: str = "Maria"
+    name: str = "Joana"
     
 # Apresenta apenas os dados de um paciente    
 def apresenta_paciente(paciente):
